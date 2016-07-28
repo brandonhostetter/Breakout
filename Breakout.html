@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breakout</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="Breakout.css">
+</head>
+
+<body>
+    <!-- Content -->
+    <div class="main-page-content-margin push-down">
+        <!-- Options Menu -->
+        <div id="options-side-menu" class="options-menu">
+            <span>
+                <span class="options-menu-header">Options</span>
+                <a href="javascript:void(0)" class="close-menu-btn" onclick="Page.closeOptions()">&times;</a>
+            </span>
+            <a href="javascript:void(0)" onclick="Page.howToPlay()">How to Play</a>
+            <label class="toggle-switch" title="The countdown timer before the game begins">
+                <span>Countdown</span>
+                <input type="checkbox" checked="checked" onclick="Page.countdownOption(event)">
+                <div class="slider"></div>
+            </label>
+            <label class="toggle-switch" title="Disable for better performance">
+                <span>Particles</span>
+                <input type="checkbox" checked="checked" onclick="Page.particleOption(event)">
+                <div class="slider"></div>
+            </label>
+            <label class="toggle-switch" title="Disable for better performance">
+                <span>Extra Particles</span>
+                <input type="checkbox" onclick="Page.increaseParticles(event)">
+                <div class="slider"></div>
+            </label>
+            <label class="toggle-switch">
+                <span>Rainbow</span>
+                <input type="checkbox" checked="checked" onclick="Page.rainbowOption(event)">
+                <div class="slider"></div>
+            </label>
+            <a href="javascript:void(0)" onclick="Page.restartOption()" style="margin-top: -12px;">Restart</a>
+        </div>
+
+        <div style="margin-bottom: -30px;">
+            <span class="hamburger-menu-icon" onclick="Page.openOptions()">&#9776;</span>
+        </div>
+        <canvas id="breakout-canvas" width="1140" height="660"></canvas>
+        <canvas id="overlay-canvas" width="1140" height="660" class="overlay-canvas"></canvas>
+
+        <!-- How to Play Modal -->
+        <div id="how-to-play-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title">How to Play</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Use the mouse or the arrow keys to control the paddle at the bottom
+                            of the page horizontally. Press space to pause the game.
+                            <br /><br />
+                            Your goal is to hit and destroy all of the colored bricks at the top.
+                            Destroy all of the bricks to progress to the next level.
+                            <br /><br />
+                            If the ball passes your paddle, you will lose a life. You are given
+                            two lives at the start of the game.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Game Modal -->
+        <div id="game-over-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 id="game-over-header" class="modal-title">Play Again?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="game-over-body">Would you like to play another game?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirm-replay-game" class="btn btn-primary">Yes</button>
+                        <button class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Breakout.js"></script>
+</body>
+</html>
